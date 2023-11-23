@@ -24,58 +24,84 @@
 
     <section id="form">
         <form class="form" onsubmit="return validateForm()">
-            <label for="firstname">Your firstname:</label>
-            <input type="text" id="firstname" name="firstname" pattern=".{1,}" required>
-            <span id="firstname-error" class="error"></span>
-          
-            <label for="lastname">Your lastname:</label>
-            <input type="text" id="lname" name="lastname" pattern=".{1,}" required>
-            <span id="lastname-error" class="error"></span>
-          
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" pattern=".{1,}" required></textarea>
-            <span id="message-error" class="error"></span>
-          
-            <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Click to send the message">Send</button>
+            <div id="step1">
+                <label for="firstname">Your firstname:</label>
+                <input type="text" id="firstname" name="firstname" pattern=".{1,}" required>
+                <span id="firstname-error" class="error"></span>
+              
+                <label for="lastname">Your lastname:</label>
+                <input type="text" id="lname" name="lastname" pattern=".{1,}" required>
+                <span id="lastname-error" class="error"></span>
+              
+                <button type="button" onclick="nextStep(2)">Next</button>
+            </div>
+    
+            <div id="step2" style="display: none;">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" pattern=".{1,}" required></textarea>
+                <span id="message-error" class="error"></span>
+              
+                <button type="button" onclick="nextStep(1)">Previous</button>
+                <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Click to send the message">Send</button>
+            </div>
         </form>
     </section>
+    
 
     <script>
-        function validateForm() {
-            const firstname = document.getElementById("firstname").value;
-            const lastname = document.getElementById("lname").value;
-            const message = document.getElementById("message").value;
-            let isValid = true;
+        function nextStep(step) {
+    if (step === 1) {
+        document.getElementById("step1").style.display = "block";
+        document.getElementById("step2").style.display = "none";
+    } else if (step === 2) {
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("lname").value;
 
-            const firstnameError = document.getElementById("firstname-error");
-            const lastnameError = document.getElementById("lastname-error");
-            const messageError = document.getElementById("message-error");
+        const firstnameError = document.getElementById("firstname-error");
+        const lastnameError = document.getElementById("lastname-error");
 
-            firstnameError.textContent = "";
-            lastnameError.textContent = "";
-            messageError.textContent = "";
+        firstnameError.textContent = "";
+        lastnameError.textContent = "";
 
-            if (firstname === "") {
-                isValid = false;
-                firstnameError.textContent = "Please enter your first name.";
-            }
+        let isValid = true;
 
-            if (lastname === "") {
-                isValid = false;
-                lastnameError.textContent = "Please enter your last name.";
-            }
-
-            if (message === "") {
-                isValid = false;
-                messageError.textContent = "Please enter your message.";
-            }
-
-            if (isValid) {
-                alert("Feedback sent successfully!");
-            }
-
-            return isValid;
+        if (firstname === "") {
+            isValid = false;
+            firstnameError.textContent = "Please enter your first name.";
         }
+
+        if (lastname === "") {
+            isValid = false;
+            lastnameError.textContent = "Please enter your last name.";
+        }
+
+        if (isValid) {
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        }
+    }
+}
+
+function validateForm() {
+    const message = document.getElementById("message").value;
+    const messageError = document.getElementById("message-error");
+
+    messageError.textContent = "";
+
+    let isValid = true;
+
+    if (message === "") {
+        isValid = false;
+        messageError.textContent = "Please enter your message.";
+    }
+
+    if (isValid) {
+        alert("Feedback sent successfully!");
+    }
+
+    return isValid;
+}
+
         
         const timerElement = document.getElementById("timer");
         const timeInputElement = document.getElementById("timeInput");
@@ -112,7 +138,7 @@
         let colorIndex = 0;
         timerElement.textContent = "00:00"; 
         
-        const audio = new Audio("https://github.com/mukanovaamina/4assingment/blob/61bd6cd4ed83bbf22c450b3679afea3ad051f0e3/web.mp3");
+        const audio = new Audio("C:/Users/Home/Downloads/web.mp3");
 ;
         
         const flashInterval = setInterval(function() {
