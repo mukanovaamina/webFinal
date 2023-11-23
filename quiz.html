@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quiz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://github.com/mukanovaamina/javas/blob/main/image/fvcn.ico.png?raw=true">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="mycss.css"> 
+</head>
+<body>
+  <h1>Quiz</h1>
+  <div id="quiz">
+    <div class="question">
+      <p>Question 1: What about the project?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="News"> News</label><br>
+        <label><input type="radio" name="q1" value="Shop"> Shop</label><br>
+        <label><input type="radio" name="q1" value="Education"> Education</label><br>
+      </div>
+    </div>
+    <div class="question">
+      <p>Question 2: Who was the guest in ZAMANDAS podcast?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="AminaMukanova"> Amina Mukanova</label><br>
+        <label><input type="radio" name="q2" value="KanatBeisekeyev"> Kanat Beisekeyev</label><br>
+        <label><input type="radio" name="q2" value="NurlanSaburov"> Nurlan Saburov</label><br>
+      </div>
+    </div>
+    <div class="question">
+        <p>Question 3: In which country was the IRONMAN in 2023?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="France"> France</label><br>
+          <label><input type="radio" name="q3" value="Spain"> Spain</label><br>
+          <label><input type="radio" name="q3" value="Kazakhstan"> Kazakhstan </label><br>
+        </div>
+      </div>
+      <div class="question">
+        <p>Question 4: What Russian film will be released this year??</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="TheBiggestMoon"> The TheBiggest Moon</label><br>
+          <label><input type="radio" name="q4" value="Moscow"> Moscow does not believe in tears</label><br>
+          <label><input type="radio" name="q4" value="Christmastrees3"> Christmas trees 3</label><br>
+        </div>
+      </div>
+      <div class="question">
+        <p>Question 5: Who is the owner of the project?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="AnneHathaway"> Anne Hathaway</label><br>
+          <label><input type="radio" name="q5" value="AminaMukanova"> Amina Mukanova</label><br>
+          <label><input type="radio" name="q5" value="NurlanSaburov"> Nurlan Saburov</label><br>
+        </div>
+      </div>
+    <button onclick="calculateScore()">Submit</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculateScore() {
+      let score = 0;
+
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (q1 && q1.value === "News") {
+        score++;
+      }
+
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      if (q2 && q2.value === "NurlanSaburov") {
+        score++;
+      }
+
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      if (q3 && q3.value === "Spain") {
+        score++;
+      }
+
+      const q4 = document.querySelector('input[name="q4"]:checked');
+      if (q4 && q4.value === "TheBiggestMoon") {
+        score++;
+      }
+
+      const q5 = document.querySelector('input[name="q5"]:checked');
+      if (q5 && q5.value === "AminaMukanova") {
+        score++;
+      }
+
+      const result = document.getElementById("result");
+      result.textContent = `Your score is: ${score}/5`;
+    }
+  </script>
+</body>
+</html>
