@@ -48,7 +48,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h2>Win the game if you are not robot</h2>
+                    <h2>Win the game if you are not a robot</h2>
                     <div class="draggable" draggable="true" id="item1">Drag Me</div>
                     <div class="droppable" id="category1">Drag Here</div>
                 </div>
@@ -57,29 +57,33 @@
     </div>
 
     <script>
-    const draggable = document.querySelector(".draggable");
-    const droppable = document.querySelector(".droppable");
+        $("#registration-form").css("background-image", "url(https://i.pinimg.com/originals/13/03/37/1303372b8260e53447709f68eea00107.png)");
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const draggable = document.querySelector(".draggable");
+            const droppable = document.querySelector(".droppable");
 
-    draggable.addEventListener("dragstart", () => {
-    draggable.classList.add("dragging");
-});
-draggable.addEventListener("dragend", () => {
-    draggable.classList.remove("dragging");
-});
+            draggable.addEventListener("dragstart", () => {
+                draggable.classList.add("dragging");
+            });
 
-droppable.addEventListener("dragover", (e) => {
-    e.preventDefault();
-});
+            draggable.addEventListener("dragend", () => {
+                draggable.classList.remove("dragging");
+            });
 
-droppable.addEventListener("drop", () => {
-    droppable.appendChild(draggable);
-    alert("Congratulations! You completed the game.");
-});
+            droppable.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+
+            droppable.addEventListener("drop", () => {
+                droppable.appendChild(draggable);
+                alert("Congratulations! You completed the game.");
+            });
+        });
 
         $(document).ready(function () {
             $("#togglePassword").click(function (e) {
                 e.preventDefault();
-    
                 const passwordInput = $("#password");
                 const passwordType = passwordInput.attr("type");
     
@@ -89,8 +93,6 @@ droppable.addEventListener("drop", () => {
                     passwordInput.attr("type", "password");
                 }
             });
-    
-            $("#registration-form").css("background-image", "url(https://i.pinimg.com/originals/13/03/37/1303372b8260e53447709f68eea00107.png)");
     
             $("#registration-form").submit(function (event) {
                 event.preventDefault();
@@ -130,8 +132,8 @@ droppable.addEventListener("drop", () => {
                 if (valid) {
                     registrationMessage.text("Registration Successful!");
                     if (valid) {
-                    $("#gameModal").modal("show");
-                }
+                        $("#gameModal").modal("show");
+                    }
                 }
             });
     
@@ -171,3 +173,4 @@ droppable.addEventListener("drop", () => {
     </script>
 </body>
 </html>
+
